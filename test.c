@@ -39,6 +39,7 @@ int main(int argc, char **argv)
     }
 
 	memset(&sll, 0, sizeof(sll));
+	memset(&ifr, 0, sizeof(ifr));
 	strcpy(ifr.ifr_name, argv[1]);
 	
 	stat = ioctl(skfd, SIOCGIFINDEX, &ifr);
