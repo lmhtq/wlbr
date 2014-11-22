@@ -13,6 +13,9 @@
 #include <netpacket/packet.h>
 #include <net/if.h>
 #include <sys/time.h>
+
+#include <linux/ieee80211.h>
+
 #define BUFLEN 2000
 struct timeval tv;
 char buf[BUFLEN];
@@ -20,7 +23,7 @@ char buf[BUFLEN];
 int main(int argc, char **argv)
 {
 	int i, skfd, n;
-	struct ethhdr *eth;
+	struct 'a' *eth;
 	struct sockaddr_ll sll;
 	struct ifreq ifr;
 	int stat;
