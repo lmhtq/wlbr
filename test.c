@@ -34,7 +34,7 @@ int main(int argc, char **argv)
 	}
 
 	/* init */
-	if(0>(skfd=socket(PF_PACKET,SOCK_PACKET,htons(ETH_P_ALL)))){
+	if(0>(skfd=socket(PF_PACKET,SOCK_RAW,htons(ETH_P_ALL)))){
         perror("Create Error");
         exit(1);
     }
