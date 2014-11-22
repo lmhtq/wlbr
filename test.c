@@ -34,7 +34,7 @@ int main(int argc, char **argv)
 	}
 
 	/* init */
-	if(0>(skfd=socket(PF_PACKET,SOCK_RAW,htons(ETH_P_ALL)))){
+	if(0>(skfd=socket(PF_PACKET,SOCK_PACKET,htons(ETH_P_ALL)))){
         perror("Create Error");
         exit(1);
     }
@@ -49,6 +49,15 @@ int main(int argc, char **argv)
 	}
 	if (-1 == ioctl(skfd, SIOCGIFHWADDR, &ifr)) {
 		printf("get dev MAC addr error\n");
+		exit(1);
+	}
+	if (-1 == ioctl(skfd, SIOCGIFFLAGS, &ifr)) {
+		printf("get dev FLAGS error\n");
+		exit(1);
+	}
+	ifr.ifr_flags |= IFF_PROMISC;
+	if (-1 == ioctl(skfd, SIOCGIFFLAGS, &ifr)) {
+		printf("get dev FLAGS error\n");
 		exit(1);
 	}
 	memcpy(thismac,ifr.ifr_hwaddr.sa_data,ETH_ALEN);
